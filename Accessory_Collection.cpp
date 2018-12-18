@@ -4,36 +4,36 @@ int main()
 {
     long shoppingtrips;
     cin>>shoppingtrips;
-    for(long i=0; i<shoppingtrips; i++)
+    for(long i=0; i<shoppingtrips; i++)         //number of trips
     {
         
-        long L, A, N, D, amount_spend=0; 
+        long N, T, M, D, amount_spend=0; 
         
-        cin>>L>>A>>N>>D;
+        cin>>N>>T>>M>>D;
         if(D==1)
         {
-            amount_spend = A*L;
+            amount_spend = T*N;
             cout<<amount_spend<<endl;
             continue;
         }
-        long A1;
-        long A_mids;
-        long A_last;
-        long A_mid_max = (N-1)/(D-1);
+        long T_max;
+        long T_mids;
+        long T_end;
+        long T_mids_max = (M-1)/(D-1);
         
         
-        for(A_mids = A_mid_max; A_mids > 0; A_mids--)
+        for(T_mids = T_mids_max; T_mids > 0; T_mids--)
         {
-            A1 = N-A_mids*(D-1)+(A_mids-1);
-            A_last = (L-A1)%A_mids;
-            long terms = (L - A1)/A_mids;
+            T_max = M-T_mids*(D-1)+(T_mids-1);
+            T_end = (N-T_max)%T_mids;
+            long terms = (N-T_max)/T_mids;
             
-            if( terms > A-1 || (terms == A-1 && A_last > 0))
+            if( terms > T-1 || (terms == T-1 && T_end > 0))         //not enough accessories
                 break;
-            long temp_amount = A1*A+terms*(A-1+A-terms)*A_mids/2+A_last*(A-terms-1);
-            if(temp_amount < amount_spend)
+            long temp_amount = T_max*T + terms*(T-1+T-terms)*T_mids/2 + T_end*(T-terms-1);
+            if(temp_amount < amount_spend)                      //reach maximum
                 break;
-            amount_spend = temp_amount;
+            amount_spend = temp_amount;                         //temp_amount>amount_spend
         }
         
         
